@@ -1,0 +1,25 @@
+# Environments
+.venv/
+venv/
+*.egg-info/
+
+# Python
+__pycache__/
+*.pyc
+.pytest_cache/
+.ipynb_checkpoints/
+
+# Data: raw downloads and large processed intermediates are NOT committed.
+# Yahoo Finance terms govern redistribution, and `prices.parquet` alone is ~101 MB.
+# `make data` regenerates everything here from source.
+data/raw/
+data/interim/
+data/processed/*
+# ...except the provenance manifest, which `make verify` reads and which
+# records the exact download date, row counts and coverage of a given build.
+!data/processed/manifest.json
+
+# OS / editor
+.DS_Store
+.idea/
+.vscode/

@@ -1,0 +1,80 @@
+# Dead Cat Detector - default study configuration
+# Every parameter that defines the primary specification lives here.
+
+study:
+  name: "primary"
+  seed: 20260902
+  # Study window. Historical S&P 500 change records on Wikipedia are dense and
+  # reliable from 2007 onward (~20-30 changes/yr); earlier years are sparse and
+  # would make point-in-time membership unreliable.
+  start: "2007-01-01"
+  end: "2026-08-31"
+  # Extra history downloaded before `start` so that 252-day momentum and
+  # 60-day rolling volatility are fully warmed up on the first event date.
+  warmup_start: "2005-06-01"
+
+universe:
+  source: "wikipedia_sp500"
+  # Reconstruct point-in-time membership by rolling the current constituent
+  # list backwards through the recorded add/remove events.
+  point_in_time: true
+  # Reject a ticker's price history if it does not overlap its membership
+  # window: guards against Yahoo serving a *different* company that later
+  # reused the same ticker (e.g. SBNY).
+  reuse_guard: true
+  min_history_days: 60
+
+benchmarks:
+  market: "SPY"
+  vix: "^VIX"
+  sector_etfs:
+    Information Technology: "XLK"
+    Health Care: "XLV"
+    Financials: "XLF"
+    Consumer Discretionary: "XLY"
+    Consumer Staples: "XLP"
+    Energy: "XLE"
+    Industrials: "XLI"
+    Materials: "XLB"
+    Utilities: "XLU"
+    Real Estate: "XLRE"
+    Communication Services: "XLC"
+  # Sector ETFs launched late; fall back to a long-history proxy before inception.
+  sector_fallbacks:
+    XLRE: "IYR"
+    XLC: "IYZ"
+
+events:
+  vol_window: 60          # rolling window for mu and sigma (strictly prior obs)
+  min_prior_obs: 60       # minimum observations before an event is admissible
+  z_threshold: -3.0       # default crash definition
+  cooldown_days: 20       # ticker-specific event cooldown (trading days)
+
+outcomes:
+  horizons: [1, 5, 10, 20, 60]
+  primary_horizon: 20
+
+crash_type:
+  # Percentile of the benchmark's own historical return distribution
+  # (expanding, strictly prior) below which a day counts as a shock.
+  benchmark_pctile: 5.0
+
+regimes:
+  vix_high_quantile: 0.75   # high-VIX = event-day VIX above this uncond. quantile
+
+models:
+  train_frac: 0.70
+  val_frac: 0.15
+  test_frac: 0.15
+  seed: 20260902
+
+bootstrap:
+  n_boot: 2000
+  ci: 0.95
+
+robustness:
+  z_thresholds: [-2.5, -3.0, -3.5, -4.0]
+  vol_windows: [40, 60, 120]
+  cooldowns: [5, 10, 20, 40]
+  horizons: [5, 10, 20, 60]
+  vix_high_quantiles: [0.60, 0.75, 0.90]

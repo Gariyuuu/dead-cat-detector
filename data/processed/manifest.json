@@ -1,0 +1,65 @@
+{
+  "config_fingerprint": "a9ca33aed3d9",
+  "source": "Yahoo Finance via yfinance (prices); Wikipedia (index membership)",
+  "study_window": [
+    "2007-01-01",
+    "2026-08-31"
+  ],
+  "download_window": [
+    "2005-06-01",
+    "2026-08-31"
+  ],
+  "price_rows": 2976172,
+  "price_tickers": 620,
+  "price_date_min": "2005-06-01",
+  "price_date_max": "2026-08-28",
+  "benchmark_rows": 74284,
+  "benchmark_tickers": [
+    "IYR",
+    "IYZ",
+    "SPY",
+    "XLB",
+    "XLC",
+    "XLE",
+    "XLF",
+    "XLI",
+    "XLK",
+    "XLP",
+    "XLRE",
+    "XLU",
+    "XLV",
+    "XLY",
+    "^VIX"
+  ],
+  "index_changes_rows": 407,
+  "index_changes_span": [
+    "1976-07-01",
+    "2026-08-18"
+  ],
+  "reuse_guard_rejects": 43,
+  "integrity_rejects": 11,
+  "integrity_rejected_tickers": [
+    "BMC",
+    "CBE",
+    "CFC",
+    "COL",
+    "CPWR",
+    "EP",
+    "GLK",
+    "GR",
+    "MEE",
+    "MNST",
+    "TIE"
+  ],
+  "coverage": {
+    "eligible_tickers_point_in_time": 846,
+    "current_members": 503,
+    "historical_only_members": 343,
+    "tickers_with_price_data": 620,
+    "historical_only_with_data": 120,
+    "historical_only_missing": 223,
+    "historical_only_coverage_pct": 35.0,
+    "current_member_coverage_pct": 99.4
+  },
+  "generated_utc": "2026-09-03T01:31:38+00:00"
+}

@@ -1,0 +1,36 @@
+{
+  "config_fingerprint": "a9ca33aed3d9",
+  "n_events": 14647,
+  "ols_primary": {
+    "n": 14615,
+    "r2": 0.008894971620613812,
+    "adj_r2": 0.008487891242035195,
+    "f_pvalue": 0.0003643007191254658
+  },
+  "logit_primary": {
+    "n": 14615,
+    "pseudo_r2": 0.0010857242488859775,
+    "base_rate": 0.4714275960947634
+  },
+  "extended_dropped_aliased": [
+    "abs_decline",
+    "excess_vs_sector"
+  ],
+  "ols_extended": {
+    "n": 14436,
+    "adj_r2": 0.010342542719075754,
+    "n_predictors": 16
+  },
+  "logit_extended": {
+    "n": 14436,
+    "pseudo_r2": 0.002102245199600561
+  },
+  "fdr": {
+    "n_tests": 32,
+    "n_reject": 0
+  },
+  "ols_crash_type": {
+    "n": 14615,
+    "adj_r2": 0.009319023343003163
+  }
+}

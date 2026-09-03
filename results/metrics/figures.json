@@ -1,0 +1,17 @@
+{
+  "figures": [
+    "fig01_event_frequency.png",
+    "fig02_severity_distribution.png",
+    "fig03_mean_car_with_ci.png",
+    "fig04_car_by_crash_type.png",
+    "fig05_avol_severity_heatmap.png",
+    "fig06_recovery_by_vix_regime.png",
+    "fig07_outcome_distribution.png",
+    "fig08_calibration.png",
+    "fig09_shap_summary.png",
+    "fig10_robustness_heatmap.png",
+    "fig11_interpretability_comparison.png",
+    "fig12_shap_dependence.png"
+  ],
+  "config_fingerprint": "a9ca33aed3d9"
+}

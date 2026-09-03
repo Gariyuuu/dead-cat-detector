@@ -1,0 +1,40 @@
+{
+  "config_fingerprint": "a9ca33aed3d9",
+  "n_events": 14678,
+  "n_events_complete_car20": 14647,
+  "n_tickers": 600,
+  "date_min": "2007-01-03",
+  "date_max": "2026-08-28",
+  "crash_type_counts": {
+    "idiosyncratic": 8192,
+    "broad_market": 4948,
+    "sector": 1449,
+    "unclassified": 89
+  },
+  "sector_known_pct": 99.1,
+  "mean_crash_z": -4.389524731953498,
+  "mean_raw_return": -0.06484600757916571,
+  "feature_missing_pct": {
+    "crash_z": 0.0,
+    "raw_return": 0.0,
+    "abs_decline": 0.0,
+    "hl_range": 0.0,
+    "volume": 0.0,
+    "log_volume": 0.0,
+    "med_volume_60": 0.22,
+    "avol": 0.22,
+    "mom_5": 0.0,
+    "mom_20": 0.0,
+    "mom_60": 0.0,
+    "mom_252": 0.34,
+    "rv_20": 0.0,
+    "rv_60": 0.0,
+    "rv_ratio": 0.0,
+    "spy_ret_event": 0.0,
+    "spy_mom_20": 0.0,
+    "vix": 0.0,
+    "vix_chg": 0.0,
+    "sector_ret_event": 0.93,
+    "excess_vs_sector": 0.93
+  }
+}

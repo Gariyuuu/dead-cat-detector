@@ -1,0 +1,74 @@
+{
+  "config_fingerprint": "a9ca33aed3d9",
+  "n_specifications": 576,
+  "primary_cell": {
+    "z_threshold": -3.0,
+    "vol_window": 60.0,
+    "cooldown": 20.0,
+    "horizon": 20.0,
+    "vix_high_quantile": 0.75,
+    "n_events": 14647.0,
+    "n_dates": 3104.0,
+    "mean_car": -0.0026532490137170074,
+    "se_clustered": 0.0013765398048080726,
+    "ci_lo": -0.0053522702350411065,
+    "ci_hi": 4.577220760709159e-05,
+    "p_value": 0.0540113716180744,
+    "recovery_rate": 0.4714275960947634,
+    "median_car": -0.004314288902551366,
+    "mean_car_broad": -0.00350867713014579,
+    "mean_car_sector": -0.0024095425830723037,
+    "mean_car_idio": -0.0022641605293646154,
+    "diff_broad_minus_idio": -0.0012445166007811746,
+    "mean_car_avol_q4": -0.0013842177989654028,
+    "mean_car_avol_q1": -0.0056538004773600825,
+    "diff_avol_q4_minus_q1": 0.00426958267839468,
+    "mean_car_high_vix": -0.0018183076428951773,
+    "mean_car_low_vix": -0.0029353505967157248,
+    "diff_high_minus_low_vix": 0.0011170429538205474,
+    "ols_adj_r2": 0.008487891242035195,
+    "beta_crash_z": -0.00023129478528318052,
+    "p_crash_z": 0.7978080043503031,
+    "beta_avol": -0.0022356849894837375,
+    "p_avol": 0.3391767996012155,
+    "beta_rv20": 0.06299954517225327,
+    "p_rv20": 0.00011186164564099166
+  },
+  "car_h20_across_specs": {
+    "n": 48,
+    "min": -0.005598976559893647,
+    "max": -0.0014894456388321444,
+    "median": -0.0031552273021531415,
+    "share_negative": 1.0,
+    "share_negative_and_significant": 0.5,
+    "share_positive_and_significant": 0.0
+  },
+  "recovery_rate_across_specs": {
+    "min": 0.4632068164213788,
+    "max": 0.4821475013932751,
+    "median": 0.47139710728790213,
+    "share_below_half": 1.0
+  },
+  "all_horizons": {
+    "mean_car": {
+      "5": -0.002974929028326508,
+      "10": -0.0023124732531317185,
+      "20": -0.0031552273021531415,
+      "60": -0.004678081674636998
+    },
+    "share_negative": {
+      "5": 1.0,
+      "10": 1.0,
+      "20": 1.0,
+      "60": 1.0
+    },
+    "share_sig_negative": {
+      "5": 144,
+      "10": 144,
+      "20": 144,
+      "60": 144
+    }
+  },
+  "avol_effect_sign_consistency": 0.9791666666666666,
+  "broad_vs_idio_sign_consistency": 0.6666666666666666
+}
