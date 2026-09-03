@@ -59,6 +59,11 @@ CLAIMS = [
     ("lightgbm AUC = 0.476", comp.loc["lightgbm"].roc_auc, 0.47648, 5e-4),
     ("base-rate accuracy highest", comp.loc["base_rate"].accuracy,
      comp.accuracy.max(), 0),
+    ("logistic Brier skill = -0.002", comp.loc["logistic"].brier_skill_vs_base_rate, -0.002399, 5e-4),
+    ("rand forest Brier skill = -0.003", comp.loc["random_forest"].brier_skill_vs_base_rate, -0.003495, 5e-4),
+    ("lightgbm Brier skill = -0.030", comp.loc["lightgbm"].brier_skill_vs_base_rate, -0.029673, 5e-4),
+    ("all Brier skills negative", float(comp.loc[["logistic", "random_forest", "lightgbm"]]
+        .brier_skill_vs_base_rate.max() < 0), 1.0, 0),
     ("n specifications = 576", rob["n_specifications"], 576, 0),
     ("share negative = 1.0", rob["car_h20_across_specs"]["share_negative"], 1.0, 0),
     ("share sig. positive = 0", rob["car_h20_across_specs"]["share_positive_and_significant"], 0.0, 0),

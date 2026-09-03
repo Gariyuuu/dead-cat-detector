@@ -167,7 +167,7 @@ were chosen on the validation block only, and the test block was scored once.
 | Model | Test AUC | PR-AUC | Brier | Log loss | Brier skill | Accuracy |
 |---|---|---|---|---|---|---|
 | Logistic | 0.504 | 0.477 | 0.2496 | 0.6924 | −0.002 | 0.524 |
-| Random forest | 0.499 | 0.477 | 0.2499 | 0.6930 | −0.004 | 0.516 |
+| Random forest | 0.499 | 0.477 | 0.2499 | 0.6930 | −0.003 | 0.516 |
 | LightGBM | 0.476 | 0.436 | 0.2564 | 0.7064 | −0.030 | 0.493 |
 | *Base rate* | *0.500* | *0.469* | *0.2490* | *0.6912* | *0.000* | *0.531* |
 
@@ -295,7 +295,7 @@ make setup      # uv venv (Python 3.12) + dependencies
 Three entry points, cheapest first:
 
 ```bash
-make verify     # check all 38 documented claims against persisted results
+make verify     # check all 42 documented claims against persisted results
 make test       # 43 tests, no data download required
 make analysis   # rebuild every analysis stage from cached data
 make all        # full pipeline including the data download
