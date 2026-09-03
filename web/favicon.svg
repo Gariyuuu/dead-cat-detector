@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <style>
+    .rule { stroke: #c9c8c2; }
+    .car  { stroke: #2a78d6; }
+    @media (prefers-color-scheme: dark) {
+      .rule { stroke: #5d5c55; }
+      .car  { stroke: #6da7ec; }
+    }
+  </style>
+  <line class="rule" x1="3" y1="11.0" x2="29" y2="11.0"
+        stroke-width="1.6" stroke-linecap="round"/>
+  <polyline class="car" points="3,11 8,13 12,12.4 17,17 22,18.6 29,23" fill="none" stroke-width="3.4"
+            stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

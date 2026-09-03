@@ -112,6 +112,11 @@ HTML = f"""<!doctype html>
 <meta property="og:title" content="Dead Cat Detector">
 <meta property="og:description" content="{ec['n_events']:,} extreme equity selloffs, 2007-2026. There is no average dead-cat bounce.">
 <meta property="og:type" content="article">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<meta name="theme-color" content="#fcfcfb" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#14140f" media="(prefers-color-scheme: dark)">
 <style>
   :root {{
     color-scheme: light;
@@ -468,16 +473,74 @@ make all        # full pipeline including the data download</code></pre>
 </html>
 """
 
+# The favicon restates the finding: a cumulative-return path drifting below a
+# flat zero reference, in the same palette as the figures. Geometry is shared
+# between the SVG and the rasterised PNGs so they cannot diverge.
+ICON_BASELINE_Y = 11.0
+ICON_PATH = [(3, 11), (8, 13), (12, 12.4), (17, 17), (22, 18.6), (29, 23)]
+ICON_ACCENT_LIGHT, ICON_ACCENT_DARK = "#2a78d6", "#6da7ec"
+ICON_RULE_LIGHT, ICON_RULE_DARK = "#c9c8c2", "#5d5c55"
+
+
+def _favicon_svg() -> str:
+    pts = " ".join(f"{x},{y}" for x, y in ICON_PATH)
+    return f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <style>
+    .rule {{ stroke: {ICON_RULE_LIGHT}; }}
+    .car  {{ stroke: {ICON_ACCENT_LIGHT}; }}
+    @media (prefers-color-scheme: dark) {{
+      .rule {{ stroke: {ICON_RULE_DARK}; }}
+      .car  {{ stroke: {ICON_ACCENT_DARK}; }}
+    }}
+  </style>
+  <line class="rule" x1="3" y1="{ICON_BASELINE_Y}" x2="29" y2="{ICON_BASELINE_Y}"
+        stroke-width="1.6" stroke-linecap="round"/>
+  <polyline class="car" points="{pts}" fill="none" stroke-width="3.4"
+            stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+"""
+
+
+def _favicon_png(path: Path, size: int, scale: int = 8, background: str | None = None) -> None:
+    """Rasterise the same geometry, supersampled for clean edges at small sizes."""
+    from PIL import Image, ImageDraw
+
+    S = size * scale
+    k = S / 32.0
+    img = Image.new("RGBA", (S, S), background or (0, 0, 0, 0))
+    d = ImageDraw.Draw(img)
+    d.line([(3 * k, ICON_BASELINE_Y * k), (29 * k, ICON_BASELINE_Y * k)],
+           fill=ICON_RULE_LIGHT, width=max(1, int(1.6 * k)), joint="curve")
+    d.line([(x * k, y * k) for x, y in ICON_PATH],
+           fill=ICON_ACCENT_LIGHT, width=max(1, int(3.4 * k)), joint="curve")
+    # Round the polyline ends, which PIL does not do for us.
+    r = 1.7 * k
+    for x, y in (ICON_PATH[0], ICON_PATH[-1]):
+        d.ellipse([x * k - r, y * k - r, x * k + r, y * k + r], fill=ICON_ACCENT_LIGHT)
+    img.resize((size, size), Image.LANCZOS).save(path)
+
+
+def build_favicons() -> list[str]:
+    (WEB / "favicon.svg").write_text(_favicon_svg())
+    _favicon_png(WEB / "favicon-32.png", 32)
+    # Apple touch icons are composited on black if transparent, so paint the surface.
+    _favicon_png(WEB / "apple-touch-icon.png", 180, background="#fcfcfb")
+    return ["favicon.svg", "favicon-32.png", "apple-touch-icon.png"]
+
+
 def main() -> None:
     FIGS.mkdir(parents=True, exist_ok=True)
     for f in FIGURES:
         shutil.copy2(ROOT / "results" / "figures" / f, FIGS / f)
+    icons = build_favicons()
     (WEB / "index.html").write_text(HTML)
     size = (WEB / "index.html").stat().st_size
     figs = sum((FIGS / f).stat().st_size for f in FIGURES)
     print(f"web/index.html  {size / 1024:.0f} KB")
     print(f"figures         {figs / 1024:.0f} KB ({len(FIGURES)} files)")
-    print(f"total payload   {(size + figs) / 1024:.0f} KB")
+    ico = sum((WEB / i).stat().st_size for i in icons)
+    print(f"icons           {ico / 1024:.1f} KB ({', '.join(icons)})")
+    print(f"total payload   {(size + figs + ico) / 1024:.0f} KB")
 
 
 if __name__ == "__main__":
